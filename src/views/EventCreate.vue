@@ -1,22 +1,19 @@
 <template>
   <div>
-    <h1>Create an Event, {{ userName }}</h1>
-    <h1>{{ userName }} is being used in here</h1>
-    <h2>{{ userID }}</h2>
+    <h1>Create an Event, {{ NamedUser.name }}</h1>
+    <h1>{{ NamedUser.name }} is being used in here</h1>
+    <h2>{{ NamedUser.id }}</h2>
   </div>
 </template>
 
 <script>
-  import { mapState } from 'vuex';
+import { mapState } from 'vuex'
 
-  export default {
-    computed: mapState({
-      userName: state => state.user.name,
-      userID: state => state.user.id
-    })
-  }
+export default {
+  computed: mapState({
+    NamedUser: 'user'
+  })
+}
 </script>
 
-<style>
-
-</style>
+<style></style>
