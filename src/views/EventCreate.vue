@@ -12,8 +12,9 @@ import { mapState } from 'vuex'
 
 export default {
   computed: {
-    localComputed() {
-      return 'Test local computed'
+    // Not useful for accessing length in multiple places
+    catLength() {
+      return this.$store.state.categories.length
     },
     ...mapState(['user'])
   }
