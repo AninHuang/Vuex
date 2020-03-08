@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>Create an Event, {{ NamedUser.name }}</h1>
-    <h1>{{ NamedUser.name }} is being used in here</h1>
-    <h2>{{ NamedUser.id }}</h2>
+    <h1>Create an Event, {{ user.name }}</h1>
+    <h1>{{ user.name }} is being used in here</h1>
+    <h2>{{ user.id }}</h2>
   </div>
 </template>
 
@@ -10,9 +10,7 @@
 import { mapState } from 'vuex'
 
 export default {
-  computed: mapState({
-    NamedUser: 'user'
-  })
+  computed: mapState(['user'])
 }
 </script>
 
