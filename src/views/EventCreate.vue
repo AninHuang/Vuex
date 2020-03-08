@@ -3,7 +3,7 @@
     <h1>Create an Event, {{ user.name }}</h1>
     <h1>{{ user.name }} is being used in here</h1>
     <h2>{{ user.id }}</h2>
-    <p>There are {{ catLength }} in categories</p>
+    <p>{{ getEvent(1) }}</p>
   </div>
 </template>
 
@@ -12,8 +12,8 @@ import { mapState } from 'vuex'
 
 export default {
   computed: {
-    catLength() {
-      return this.$store.getters.catLength
+    getEvent() {
+      return this.$store.getters.getEventById
     },
     ...mapState(['user'])
   }
