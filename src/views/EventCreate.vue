@@ -3,6 +3,7 @@
     <h1>Create an Event, {{ user.name }}</h1>
     <h1>{{ user.name }} is being used in here</h1>
     <h2>{{ user.id }}</h2>
+    <h2>{{ localComputed }}</h2>
   </div>
 </template>
 
@@ -10,7 +11,12 @@
 import { mapState } from 'vuex'
 
 export default {
-  computed: mapState(['user'])
+  computed: {
+    localComputed() {
+      return 'Test local computed'
+    },
+    ...mapState(['user'])
+  }
 }
 </script>
 
