@@ -9,5 +9,10 @@ export default new Vuex.Store({
     categories: ['Technology', 'Sports', 'Media', 'Regional', 'Environmental']
   },
   mutations: {},
-  actions: {}
+  actions: {},
+  getters: {
+    catLength: state => {
+      return state.categories.length
+    }
+  }
 })

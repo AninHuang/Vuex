@@ -3,7 +3,7 @@
     <h1>Create an Event, {{ user.name }}</h1>
     <h1>{{ user.name }} is being used in here</h1>
     <h2>{{ user.id }}</h2>
-    <h2>{{ localComputed }}</h2>
+    <p>There are {{ catLength }} in categories</p>
   </div>
 </template>
 
@@ -12,9 +12,8 @@ import { mapState } from 'vuex'
 
 export default {
   computed: {
-    // Not useful for accessing length in multiple places
     catLength() {
-      return this.$store.state.categories.length
+      return this.$store.getters.catLength
     },
     ...mapState(['user'])
   }
