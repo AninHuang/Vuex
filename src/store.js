@@ -16,9 +16,14 @@ export default new Vuex.Store({
       { id: 1, title: 'event 1', organizer: 'organizer 1' },
       { id: 2, title: 'event 2', organizer: 'organizer 2' },
       { id: 3, title: 'event 3', organizer: 'organizer 3' }
-    ]
+    ],
+    count: 0
   },
-  mutations: {},
+  mutations: {
+    INCREMENT_COUNT(state, value) {
+      state.count += value
+    }
+  },
   actions: {},
   getters: {
     catLength: state => {
