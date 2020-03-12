@@ -24,8 +24,9 @@ export default new Vuex.Store({
         commit('ADD_EVENT', event)
       })
     },
-    fetchEvents({ commit }) {
-      EventService.getEvents()
+    fetchEvents({ commit }, { perPage, page }) {
+      // Payload above are allowed a single variable or an object
+      EventService.getEvents(perPage, page)
         .then(response => {
           commit('SET_EVENTS', response.data)
         })
