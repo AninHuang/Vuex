@@ -2,6 +2,20 @@
   <div>
     <h1>Events Listing</h1>
     <EventCard v-for="event in events" :key="event.id" :event="event" />
+    <!-- Only show previous link if not on first page -->
+    <template v-if="page != 1">
+      <router-link
+        :to="{ name: 'event-list', query: { page: page - 1 } }"
+        ref="pre"
+        >Pre Page</router-link
+      >
+      |
+    </template>
+    <router-link
+      :to="{ name: 'event-list', query: { page: page + 1 } }"
+      ref="next"
+      >Next Page</router-link
+    >
   </div>
 </template>
 
