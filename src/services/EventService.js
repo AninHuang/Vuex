@@ -11,6 +11,8 @@ const apiClient = axios.create({
 
 export default {
   getEvents(perPage, page) {
+    // json-server offers pagination
+    // Use _page and optionally _limit to paginate returned data
     return apiClient.get(`/events?_limit=${perPage}&_page=${page}`)
   },
   getEvent(id) {
