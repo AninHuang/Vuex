@@ -47,15 +47,26 @@ export default new Vuex.Store({
           console.log('There was an error:', error.response)
         })
     },
-    fetchEvent({ commit }, id) {
-      EventService.getEvent(id)
-        .then(response => {
-          commit('SET_EVENT', response.data)
-        })
-        .catch(error => {
-          console.log('There was an error:', error.response)
-        })
+    fetchEvent({ commit, getters }, id) {
+      var event = getters.getEventById(id)
+
+      if (event) {
+        // 使用 getters，減少重複 call api
+        commit('SET_EVENT', event)
+      } else {
+        EventService.getEvent(id)
+          .then(response => {
+            commit('SET_EVENT', response.data)
+          })
+          .catch(error => {
+            console.log('There was an error:', error.response)
+          })
+      }
     }
   },
-  getters: {}
+  getters: {
+    getEventById: state => id => {
+      return state.events.find(event => event.id === id)
+    }
+  }
 })
