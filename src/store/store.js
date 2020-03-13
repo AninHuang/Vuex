@@ -1,12 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import EventService from '@/services/EventService'
+import * as user from '@/store/modules/user'
+// user.state = { user: { id: '00123', name: 'Anin' } }
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  modules: {
+    user
+  },
   state: {
-    user: { id: '00123', name: 'Anin' },
     categories: ['Technology', 'Sports', 'Media', 'Regional', 'Environmental'],
     events: [],
     eventsTotal: 0,
