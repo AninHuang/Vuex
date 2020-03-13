@@ -8,7 +8,8 @@ export default new Vuex.Store({
   state: {
     user: { id: '00123', name: 'Anin' },
     categories: ['Technology', 'Sports', 'Media', 'Regional', 'Environmental'],
-    events: []
+    events: [],
+    eventsTotal: 0
   },
   mutations: {
     ADD_EVENT(state, event) {
@@ -16,6 +17,9 @@ export default new Vuex.Store({
     },
     SET_EVENTS(state, events) {
       state.events = events
+    },
+    SET_EVENTS_TOTAL(state, eventsTotal) {
+      state.eventsTotal = eventsTotal
     }
   },
   actions: {
@@ -28,6 +32,11 @@ export default new Vuex.Store({
       // Payload above are allowed a single variable or an object
       EventService.getEvents(perPage, page)
         .then(response => {
+          // 透過 json-server 在 response header 回傳的 X-Total-Count 取得總事件件數
+          commit(
+            'SET_EVENTS_TOTAL',
+            parseInt(response.headers['x-total-count'])
+          )
           commit('SET_EVENTS', response.data)
         })
         .catch(error => {

@@ -9,13 +9,15 @@
         ref="pre"
         >Pre Page</router-link
       >
-      |
     </template>
-    <router-link
-      :to="{ name: 'event-list', query: { page: page + 1 } }"
-      ref="next"
-      >Next Page</router-link
-    >
+    <template v-if="hasNextPage">
+      |
+      <router-link
+        :to="{ name: 'event-list', query: { page: page + 1 } }"
+        ref="next"
+        >Next Page</router-link
+      >
+    </template>
   </div>
 </template>
 
@@ -29,7 +31,7 @@ export default {
   },
   created() {
     this.$store.dispatch('fetchEvents', {
-      perPage: 3, // Hard code here first
+      perPage: 3, // perPage 設在此而不是在 data，表示 perPage 不會是響應式的
       page: this.page // Access computed page
     })
   },
@@ -37,7 +39,10 @@ export default {
     page() {
       return parseInt(this.$route.query.page) || 1
     },
-    ...mapState(['events'])
+    hasNextPage() {
+      return this.eventsTotal > this.page * this.perPage
+    },
+    ...mapState(['events', 'eventsTotal'])
   }
 }
 </script>
