@@ -22,7 +22,7 @@ export default {
     EventCard
   },
   created() {
-    this.$store.dispatch('fetchEvents', {
+    this.$store.dispatch('event/fetchEvents', {
       perPage: 3, // perPage 設在此而不是在 data，表示 perPage 不會是響應式的
       page: this.page // Access computed page
     })
